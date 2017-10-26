@@ -12,14 +12,12 @@ var remoteHub = "http://" + username + ":" + authkey + "@hub.crossbrowsertesting
 
 //add multiple browsers to run in parallel here
 var browsers = [
-   { browserName: 'firefox', os_api_name: 'Win7', browser_api_name: 'firefox-latest', screen_resolution: '1024x768' },
-   { browserName: 'firefox', os_api_name: 'Win7', browser_api_name: 'firefox-latest', screen_resolution: '1366x768' },
-   { browserName: 'firefox', os_api_name: 'Win7', browser_api_name: 'firefox-latest', screen_resolution: '1600x1200' },
-   { browserName: 'firefox', os_api_name: 'Win7', browser_api_name: 'firefox-latest', screen_resolution: '1280x768' },
+   { browserName: 'firefox', version: 'firefox-latest', platform = 'Windows 7 64-Bit', screenResolution = '1024x768' },
+   { browserName: 'chrome', version: 'chrome-latest', platform = 'Windows 7 64-Bit', screenResolution = '1024x768' },
+   { browserName: 'chrome', version: 'chrome-latest', platform = 'Windows 10', screenResolution = '1024x768' },
    { browserName: 'Chrome', deviceName: 'Nexus 6P', platformVersion: '7.0', platformName: 'Android', deviceOrientation: 'portrait' },
    { browserName: 'Chrome', deviceName: 'Galaxy Tab 2', platformVersion: '4.1', platformName: 'Android', deviceOrientation: 'landscape' },
    { browserName: 'Safari', deviceName: 'iPad Pro Simulator', platformVersion: '9.3', platformName: 'iOS', deviceOrientation: 'landscape' }
-
 ];
 
 var flows = browsers.map(function(browser) {
