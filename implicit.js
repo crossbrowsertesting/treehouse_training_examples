@@ -9,7 +9,7 @@ var driver = new webdriver.Builder()
   .forBrowser('chrome')
   .build();
 
-driver.manage().timeouts().implicitlyWait(1);
+driver.manage().timeouts().implicitlyWait(10);
 
 function searchForTreehouse() {
 	searchbar = driver.findElement(webdriver.By.name('q'))
