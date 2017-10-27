@@ -1,8 +1,8 @@
 // Google Search - Selenium Example Script
 //See https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs for detailed instructions
 
-var username = 'daniel.giordano@smartbear.com'; //replace with your email address 
-var authkey = 'uec63bb75f4dc429'; //replace with your authkey 
+var username = 'chase@crossbrowsertesting.com'; //replace with your email address 
+var authkey = 'selenium'; //replace with your authkey 
 
 var webdriver = require('selenium-webdriver'),
     SeleniumServer = require('selenium-webdriver/remote').SeleniumServer,
@@ -12,9 +12,9 @@ var remoteHub = "http://" + username + ":" + authkey + "@hub.crossbrowsertesting
 
 //add multiple browsers to run in parallel here
 var browsers = [
-   { browserName: 'firefox', version: 'firefox-latest', platform = 'Windows 7 64-Bit', screenResolution = '1024x768' },
-   { browserName: 'chrome', version: 'chrome-latest', platform = 'Windows 7 64-Bit', screenResolution = '1024x768' },
-   { browserName: 'chrome', version: 'chrome-latest', platform = 'Windows 10', screenResolution = '1024x768' },
+   { browserName: 'Firefox', version: '55', platform: 'Windows 7 64-Bit', screenResolution: '1366x768' },
+   { browserName: 'Chrome', version: '61', platform: 'Windows 7 64-Bit', screenResolution: '1366x768' },
+   { browserName: 'Internet Explorer', version: '11', platform: 'Windows 7 64-Bit', screenResolution: '1366x768' },
    { browserName: 'Chrome', deviceName: 'Nexus 6P', platformVersion: '7.0', platformName: 'Android', deviceOrientation: 'portrait' },
    { browserName: 'Chrome', deviceName: 'Galaxy Tab 2', platformVersion: '4.1', platformName: 'Android', deviceOrientation: 'landscape' },
    { browserName: 'Safari', deviceName: 'iPad Pro Simulator', platformVersion: '9.3', platformName: 'iOS', deviceOrientation: 'landscape' }
@@ -22,16 +22,12 @@ var browsers = [
 
 var flows = browsers.map(function(browser) {
     return webdriver.promise.createFlow(function() {
-
+        
         var caps = {
             name : 'Google Search - Selenium Test Example',
             build :  '1.0',
             
             browserName : browser.browserName, // <---- this needs to be the browser type in lower case: firefox, internet explorer, chrome, opera, or safari
-            browser_api_name : browser.browser_api_name, 
-            os_api_name : browser.os_api_name,     
-            screen_resolution : browser.screen_resolution,
-
             record_video : "true",
             record_network : "true",
             record_snapshot :  "true",
@@ -39,6 +35,21 @@ var flows = browsers.map(function(browser) {
             username : username,
             password : authkey
         };
+
+        // caps are different for mobiles
+        if (browser.deviceName) {
+            caps.deviceName = browser.deviceName;
+            caps.platformVersion = browser.platformVersion;
+            caps.platformName = browser.platformName;
+            caps.deviceOrientation = browser.deviceOrientation;
+
+        // otherwise, handle desktops
+        } else {
+            caps.platform = browser.platform;
+            caps.version = browser.version;
+            caps.screenResolution = browser.screenResolution; 
+        }
+        
 
         var driver = new webdriver.Builder()
              .usingServer(remoteHub)
