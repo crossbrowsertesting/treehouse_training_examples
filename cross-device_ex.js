@@ -1,8 +1,8 @@
 // Google Search - Selenium Example Script
 //See https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs for detailed instructions
 
-var username = 'chase@crossbrowsertesting.com'; //replace with your email address 
-var authkey = 'selenium'; //replace with your authkey 
+var username = 'daniel.giordano@smartbear.com'; //replace with your email address 
+var authkey = 'uec63bb75f4dc429'; //replace with your authkey 
 
 var webdriver = require('selenium-webdriver'),
     SeleniumServer = require('selenium-webdriver/remote').SeleniumServer,
