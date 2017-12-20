@@ -1,6 +1,3 @@
-//import chromedriver
-require('chromedriver');
-
 
 var webdriver = require('selenium-webdriver');
 var sleep = require('sleep');

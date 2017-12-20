@@ -1,7 +1,4 @@
 
-require('chromedriver');
-
-
 var webdriver = require('selenium-webdriver');
 
 //create driver object for chromedriver
@@ -30,4 +27,3 @@ driver.get('http://google.com')
 	.then(clickTreehouse());
 
 driver.quit()
-

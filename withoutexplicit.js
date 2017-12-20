@@ -1,5 +1,3 @@
-//import chromedriver
-require('chromedriver');
 
 var webdriver = require('selenium-webdriver');
 

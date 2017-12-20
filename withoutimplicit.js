@@ -1,5 +1,3 @@
-//import chromedriver
-require('chromedriver');
 
 var webdriver = require('selenium-webdriver');
 
@@ -8,7 +6,9 @@ var driver = new webdriver.Builder()
   .forBrowser('chrome')
   .build();
 
-//driver.manage().timeouts().implicitlyWait(10);
+console.log("before waits")
+
+console.log("after waits")
 
 function enterUsername(){
      //find checkout and click it 
@@ -38,19 +38,21 @@ function clickSubmit() {
 
 
 function waitForMessage(){
-    //loginMessage = driver.wait(webdriver.until.elementLocated(webdriver.By.id("logged-in-message")), 10000);
-    //command without an wait, which fails the test
+    //driver.manage().timeouts().implicitlyWait(20);
+    console.log("after waits2")
     loginMessage = driver.findElement(webdriver.By.id("logged-in-message"));
 }
-//wait on logged in message
 
-//load your URL
-driver.get('http://crossbrowsertesting.github.io/login-form.html')
+//driver.manage().timeouts().implicitlyWait(20000)
+    //.then(driver.get('http://crossbrowsertesting.github.io/login-form.html'))
+  //Comment the the below line and uncomment above two to see it actually works with implicit waits
+    driver.get('http://crossbrowsertesting.github.io/login-form.html')
     .then(enterUsername())
     .then(enterPassword())
-    .then(clickSubmit())
-    
+    .then(clickSubmit()) 
+
     .then(waitForMessage());
+
     
 //quit the driver
 driver.quit()
